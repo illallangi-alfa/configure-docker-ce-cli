@@ -1,0 +1,9 @@
+---
+- name: "Update templates"
+  template:
+    src:  "{{ item.src | default((item.dest | basename ()) + '.j2')}}"
+    dest: "{{ item.dest }}"
+  with_items:
+    - dest: "/etc/profile.d/docker-cli-experimental.sh"
+  tags:
+    - "docker-ce-cli"
